@@ -29,19 +29,9 @@ This repository contains Docker configuration files for running Claude Code in a
    - Claude will prompt you to authenticate with your Anthropic account
    - Credentials will be stored automatically for future sessions
 
-3. Build and start the container:
+3. Run Claude Code in the container:
    ```
-   docker-compose up -d
-   ```
-
-4. Attach to the running container:
-   ```
-   docker attach claude-code
-   ```
-
-5. Use Claude Code inside the container:
-   ```
-   claude --help
+   docker-compose run --rm claude-code
    ```
 
 ## Configuration
