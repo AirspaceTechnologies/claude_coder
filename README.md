@@ -67,8 +67,6 @@ Alternatively, you can still use docker-compose directly:
 PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-code
 ```
 
-If not specified, it will default to `$HOME/Development/bug_hawk`.
-
 ## License
 
 [Add appropriate license information here]
