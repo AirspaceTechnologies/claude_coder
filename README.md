@@ -28,8 +28,14 @@ This repository contains Docker configuration files for running Claude Code in a
 2. When running Claude Code for the first time, it will guide you through the authentication process:
    - Claude will prompt you to authenticate with your Anthropic account
    - Credentials will be stored automatically for future sessions
+   
+3. Useful links:
+   - [Billing management](https://console.anthropic.com/settings/billing)
+   - [Claude Code documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
+   - [Claude Code tutorials](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials)
+   - [Model Context Protocol documentation](https://modelcontextprotocol.io/introduction)
 
-3. Run Claude Code in the container:
+4. Run Claude Code in the container:
    ```
    docker-compose run --rm claude-code
    ```
@@ -40,6 +46,16 @@ The Docker Compose file is configured to:
 - Mount your local `.claude` directory for persistence of settings
 - Mount your local `.claude.json` file for API credentials
 - Mount a local project directory to work on
+
+### Adding External Services
+
+To add the Tavily MCP server for web search capabilities:
+
+```bash
+claude mcp add tavily-mcp -e TAVILY_API_KEY=tvly-xxxxx -- npx -y tavily-mcp@0.1.2
+```
+
+For detailed instructions on configuring MCP servers, see the [MCP server configuration tutorial](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#configure-mcp-servers).
 
 ### Using a Custom Project Directory
 
