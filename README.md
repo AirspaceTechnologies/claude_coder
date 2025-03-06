@@ -15,7 +15,7 @@ This repository contains Docker configuration files for running Claude Code in a
 
 - Docker
 - Docker Compose
-- Anthropic API credentials
+- Anthropic account login credentials
 
 ## Getting Started
 
@@ -51,7 +51,25 @@ The Docker Compose file is configured to:
 - Mount your local `.claude.json` file for API credentials
 - Mount a local project directory to work on
 
-You can modify the `docker-compose.yml` file to change mounted volumes or working directory.
+### Using a Custom Project Directory
+
+You can use the included wrapper script to easily run Claude Code with your current directory as the project:
+
+```bash
+# Run from any directory to use that directory as the project
+/path/to/claude_code/run-claude.sh
+
+# Or specify a different project directory as an argument
+/path/to/claude_code/run-claude.sh /path/to/your/project
+```
+
+Alternatively, you can still use docker-compose directly:
+
+```bash
+PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-code
+```
+
+If not specified, it will default to `$HOME/Development/bug_hawk`.
 
 ## License
 

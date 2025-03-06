@@ -8,7 +8,7 @@ services:
     volumes:
       - $HOME/.claude:/home/developer/.claude
       - $HOME/.claude.json:/home/developer/.claude.json
-      - $HOME/Development/bug_hawk:/home/developer/projects/bug_hawk
+      - ${PROJECT_DIR:-$HOME/Development/bug_hawk}:/home/developer/projects/code
     stdin_open: true
     tty: true
-    working_dir: /home/developer/projects/bug_hawk
+    working_dir: /home/developer/projects/code
