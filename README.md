@@ -25,9 +25,9 @@ This repository contains Docker configuration files for running Claude Code in a
    cd claude_coder
    ```
 
-2. Make sure you have your Claude credentials configured:
-   - Create a `.claude` directory in your home folder
-   - Add your API key to `.claude.json` in your home folder
+2. When running Claude Code for the first time, it will guide you through the authentication process:
+   - Claude will prompt you to authenticate with your Anthropic account
+   - Credentials will be stored automatically for future sessions
 
 3. Build and start the container:
    ```
