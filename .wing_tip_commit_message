@@ -1,6 +1,0 @@
-Update README and scripts for project setup
-
-- Changed 'Anthropic API credentials' to 'Anthropic account login credentials' in README.md
-- Added instructions for using a custom project directory in README.md
-- Updated docker-compose.yml to use a variable for project directory
-- Created run-claude.sh script to simplify running Claude Code with a specified project directory
