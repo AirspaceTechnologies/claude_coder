@@ -1,84 +1,74 @@
 # Claude Code Docker Environment
 
-This repository contains Docker configuration files for running Claude Code in a containerized development environment. Claude Code is Anthropic's CLI tool for interacting with Claude AI models.
+This repository provides an easy way to run Claude Code (Anthropic's AI-powered CLI tool) in a Docker container. The containerized setup ensures a consistent environment with all necessary dependencies.
+
+## Quick Start
+
+1. **Clone and build**
+   ```bash
+   git clone https://github.com/AirspaceTechnologies/claude_coder.git
+   cd claude_coder
+   docker-compose build
+   ```
+
+2. **Run Claude Code**
+   ```bash
+   # Option 1: Use the wrapper script (recommended)
+   ./claude-code /path/to/your/project
+   
+   # Option 2: Use docker-compose directly
+   PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-code
+   ```
+
+3. **First-time setup**: Claude will guide you through authentication with your Anthropic account.
+
+## Installation (Optional)
+
+Make Claude Code available from anywhere by adding it to your PATH:
+
+```bash
+# Create a symlink in a directory in your PATH
+ln -s "$(pwd)/claude-code" /usr/local/bin/claude-code
+
+# Now you can run from any directory
+cd /path/to/your/project
+claude-code
+# Or specify a different project directory
+claude-code /path/to/different/project
+```
 
 ## Features
 
-- Ubuntu 22.04 base image
-- Pre-installed development tools (git, vim, etc.)
+- Complete containerized environment with Docker
+- Pre-installed development tools (git, vim, etc.) 
 - Multiple language runtimes (Node.js 18, Python 3, Ruby, Go)
 - Non-root user setup with proper permissions
-- Persistent configuration volumes
-- Docker Compose for easy startup
+- Persistent configuration storage
 
-## Prerequisites
+## Web Search Capabilities
 
-- Docker
-- Docker Compose
-- Anthropic account login credentials
+Add Tavily search to Claude Code:
 
-## Getting Started
-
-1. Clone this repository:
-   ```
-   git clone https://github.com/AirspaceTechnologies/claude_coder.git
-   cd claude_coder
+1. [Get a Tavily API key](https://docs.tavily.com/welcome)
+2. Add the MCP server:
+   ```bash
+   claude mcp add tavily-mcp -e TAVILY_API_KEY=tvly-xxxxx -- npx -y tavily-mcp@0.1.2
    ```
 
-2. When running Claude Code for the first time, it will guide you through the authentication process:
-   - Claude will prompt you to authenticate with your Anthropic account
-   - Credentials will be stored automatically for future sessions
-   
-3. Useful links:
-   - [Billing management](https://console.anthropic.com/settings/billing)
-   - [Claude Code documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
-   - [Claude Code tutorials](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials)
-   - [Model Context Protocol documentation](https://modelcontextprotocol.io/introduction)
+## Technical Details
 
-4. Run Claude Code in the container:
-   ```
-   docker-compose run --rm claude-code
-   ```
+The Docker container:
+- Uses Ubuntu 22.04 as the base image
+- Mounts your local `.claude` directory and `.claude.json` file for persistence
+- Mounts your project directory specified by `PROJECT_DIR`
 
-## Configuration
+## Learn More
 
-The Docker Compose file is configured to:
-- Mount your local `.claude` directory for persistence of settings
-- Mount your local `.claude.json` file for API credentials
-- Mount a local project directory to work on
-
-### Adding External Services
-
-To add the Tavily MCP server for web search capabilities:
-
-```bash
-claude mcp add tavily-mcp -e TAVILY_API_KEY=tvly-xxxxx -- npx -y tavily-mcp@0.1.2
-```
-
-For detailed instructions on configuring MCP servers, see the [MCP server configuration tutorial](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#configure-mcp-servers).
-
-### Using a Custom Project Directory
-
-You can use the included wrapper script to easily run Claude Code with your current directory as the project:
-
-```bash
-# First, add the script to your PATH:
-# Option 1: Create a symlink in a directory that's already in your PATH
-ln -s /path/to/claude_code/claude-code /usr/local/bin/claude-code
-
-# Option 2: Add the directory to your PATH in your shell profile (~/.bashrc, ~/.zshrc, etc.)
-echo 'export PATH="/path/to/claude_code:$PATH"' >> ~/.zshrc
-source ~/.zshrc
-
-# Now you can run from any directory to use that directory as the project
-claude-code
-```
-
-Alternatively, you can still use docker-compose directly:
-
-```bash
-PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-code
-```
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
+- [Claude Code tutorials](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials)
+- [Model Context Protocol](https://modelcontextprotocol.io/introduction)
+- [Tavily MCP documentation](https://docs.tavily.com/documentation/mcp)
+- [Anthropic billing management](https://console.anthropic.com/settings/billing)
 
 ## License
 
