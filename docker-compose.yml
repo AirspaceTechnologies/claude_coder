@@ -6,8 +6,8 @@ services:
     image: claude-code-dev
     container_name: claude-code
     volumes:
-      - $HOME/.claude:/home/developer/.claude
-      - $HOME/.claude.json:/home/developer/.claude.json
+      - $HOME/.claude-docker:/home/developer/.claude
+      - $HOME/.claude-docker.json:/home/developer/.claude.json
       - ${PROJECT_DIR:-$HOME/Development/bug_hawk}:/home/developer/projects/code
     stdin_open: true
     tty: true

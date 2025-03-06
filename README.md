@@ -56,9 +56,6 @@ source ~/.zshrc
 
 # Now you can run from any directory to use that directory as the project
 claude-code
-
-# Or specify a different project directory as an argument
-claude-code /path/to/your/project
 ```
 
 Alternatively, you can still use docker-compose directly:
