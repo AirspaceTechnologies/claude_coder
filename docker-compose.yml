@@ -1,0 +1,14 @@
+services:
+  claude-code:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: claude-code-dev
+    container_name: claude-code
+    volumes:
+      - $HOME/.claude:/home/developer/.claude
+      - $HOME/.claude.json:/home/developer/.claude.json
+      - $HOME/Development/bug_hawk:/home/developer/projects/bug_hawk
+    stdin_open: true
+    tty: true
+    working_dir: /home/developer/projects/bug_hawk
