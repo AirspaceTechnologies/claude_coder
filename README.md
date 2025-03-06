@@ -46,11 +46,19 @@ The Docker Compose file is configured to:
 You can use the included wrapper script to easily run Claude Code with your current directory as the project:
 
 ```bash
-# Run from any directory to use that directory as the project
-/path/to/claude_code/run-claude.sh
+# First, add the script to your PATH:
+# Option 1: Create a symlink in a directory that's already in your PATH
+ln -s /path/to/claude_code/claude-code /usr/local/bin/claude-code
+
+# Option 2: Add the directory to your PATH in your shell profile (~/.bashrc, ~/.zshrc, etc.)
+echo 'export PATH="/path/to/claude_code:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# Now you can run from any directory to use that directory as the project
+claude-code
 
 # Or specify a different project directory as an argument
-/path/to/claude_code/run-claude.sh /path/to/your/project
+claude-code /path/to/your/project
 ```
 
 Alternatively, you can still use docker-compose directly:
