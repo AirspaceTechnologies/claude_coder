@@ -58,7 +58,11 @@ You can extend Claude Coder's capabilities by adding additional MCP servers. The
 
 ### Features
 - Complete containerized environment with Docker
-- Pre-installed development tools (git, vim, etc.) 
+- Pre-installed development tools:
+  - Version control: git, git-lfs, GitHub CLI
+  - Editors: vim
+  - Modern CLI tools: ripgrep, fd-find, bat, jq, make
+  - Utilities: curl, wget, zip/unzip
 - Multiple language runtimes (Node.js 18, Python 3, Ruby, Go)
 - Non-root user setup with proper permissions
 - Persistent configuration storage
@@ -103,6 +107,31 @@ This approach is safe in containerized environments because:
 - Container environments have predetermined access patterns
 
 Outside containerized environments, this flag should be used with caution as it removes Claude's permission safeguards.
+
+### Customizing the Environment
+
+The Dockerfile can be easily customized to meet your specific project requirements:
+
+```bash
+# Clone the repository and modify the Dockerfile
+git clone https://github.com/AirspaceTechnologies/claude_coder.git
+cd claude_coder
+# Edit Dockerfile to add your project's dependencies
+docker-compose build
+```
+
+**Key Requirements for Any Customization:**
+- Node.js must be installed (the container uses Node.js 18)
+- Claude Code must be installed globally: `npm install -g @anthropic-ai/claude-code`
+- A non-root user should run Claude Code for proper permission handling
+
+**Common Customizations:**
+- Adding language-specific tools (e.g., Rust, Java, .NET)
+- Installing additional development tools (linters, formatters)
+- Configuring environment variables for your project
+- Adding cloud provider CLI tools (AWS, Azure, GCP)
+
+The containerized approach ensures that your customizations are isolated and reproducible across different environments and team members.
 
 ## Learn More
 
