@@ -88,8 +88,8 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
    │                                                                                                                                                           │
    │ https://docs.anthropic.com/s/claude-code-security                                                                                                         │
    │                                                                                                                                                           │
-   │ ❯ No, exit                                                                                                                                                │
-   │   Yes, I accept                                                                                                                                           │
+   │   No, exit                                                                                                                                                │
+   │ ❯ Yes, I accept                                                                                                                                           │
    │                                                                                                                                                           │
    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
       Enter to confirm · Esc to exit
