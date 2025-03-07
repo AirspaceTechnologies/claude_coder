@@ -20,7 +20,7 @@
 
 **Developer:** Thought - If we only had a system to automate all this tedious back-and-forth error-fixing...
 
-Claude Coder in Docker: Navigate to your project directory and run `claude_coder`. Your current directory is safely mounted in a Docker container with Claude Coder ready to help you code faster.
+Introducing Claude Coder: Navigate to your project directory and run `claude_coder`. Your current directory is safely mounted in a Docker container with Claude Coder ready to help you code faster.
 
 ## Quick Start
 
