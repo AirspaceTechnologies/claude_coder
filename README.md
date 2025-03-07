@@ -41,6 +41,38 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
 
 5. **First-time setup**: Claude will guide you through authentication with your Anthropic account. You will need an Anthropic account with API credits to use Claude Coder. Check your [billing management](https://console.anthropic.com/settings/billing) page to confirm you have available credits before using.
 
+   **Authentication in Docker container**:
+   ```
+   ╭────────────────────────────────────────────╮
+   │ ✻ Welcome to Claude Code research preview! │
+   ╰────────────────────────────────────────────╯
+
+    ██████╗██╗      █████╗ ██╗   ██╗██████╗ ███████╗
+   ██╔════╝██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝
+   ██║     ██║     ███████║██║   ██║██║  ██║█████╗  
+   ██║     ██║     ██╔══██║██║   ██║██║  ██║██╔══╝  
+   ╚██████╗███████╗██║  ██║╚██████╔╝██████╔╝███████╗
+    ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
+    ██████╗ ██████╗ ██████╗ ███████╗                
+   ██╔════╝██╔═══██╗██╔══██╗██╔════╝                
+   ██║     ██║   ██║██║  ██║█████╗                  
+   ██║     ██║   ██║██║  ██║██╔══╝                  
+   ╚██████╗╚██████╔╝██████╔╝███████╗                
+    ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
+
+   Browser didn't open? Use the url below to sign in:
+
+   https://console.anthropic.com/oauth/authorize?....
+
+   Paste code here if prompted >
+   ```
+
+   When authenticating inside a Docker container, you'll need to:
+   - Copy the provided URL
+   - Open it in a browser on your host machine
+   - Complete the authentication process
+   - Copy the secret code back to the CLI prompt in the container
+
 ## MCP Tools and Capabilities
 
 ### Web Search with Tavily
