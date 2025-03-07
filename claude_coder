@@ -11,9 +11,9 @@ else
 fi
 
 # Print information about the run
-echo "Starting Claude Code with project directory: $PROJECT_DIR"
+echo "Starting Claude Coder with project directory: $PROJECT_DIR"
 
-# Run Claude Code with the specified project directory
+# Run Claude Coder with the specified project directory
 SCRIPT_PATH=$(readlink -f "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
-cd "$SCRIPT_DIR" && PROJECT_DIR="$PROJECT_DIR" docker-compose run --rm claude-code
+cd "$SCRIPT_DIR" && PROJECT_DIR="$PROJECT_DIR" docker-compose run --rm claude-coder

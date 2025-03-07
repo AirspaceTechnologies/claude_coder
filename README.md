@@ -1,6 +1,6 @@
-# Claude Code Docker Environment
+# Claude Coder Docker Environment
 
-This repository provides an easy way to run Claude Code (Anthropic's AI-powered CLI tool) in a Docker container. The containerized setup ensures a consistent environment with all necessary dependencies.
+This repository provides an easy way to run Claude Coder (Anthropic's AI-powered CLI tool) in a Docker container. The containerized setup ensures a consistent environment with all necessary dependencies.
 
 ## Quick Start
 
@@ -11,23 +11,23 @@ This repository provides an easy way to run Claude Code (Anthropic's AI-powered 
    docker-compose build
    ```
 
-2. **Install Claude Code**
+2. **Install Claude Coder**
    ```bash
    # Create a symlink in a directory in your PATH (recommended)
-   ln -s "$(pwd)/claude-code" /usr/local/bin/claude-code
+   ln -s "$(pwd)/claude_coder" /usr/local/bin/claude_coder
    ```
 
-3. **Run Claude Code**
+3. **Run Claude Coder**
    ```bash
    # Run from within your project directory
    cd /path/to/your/project
-   claude-code
+   claude_coder
    
    # Or specify a project directory directly
-   claude-code /path/to/your/project
+   claude_coder /path/to/your/project
    ```
 
-4. **First-time setup**: Claude will guide you through authentication with your Anthropic account. You will need an Anthropic account with API credits to use Claude Code. Check your [billing management](https://console.anthropic.com/settings/billing) page to confirm you have available credits before using.
+4. **First-time setup**: Claude will guide you through authentication with your Anthropic account. You will need an Anthropic account with API credits to use Claude Coder. Check your [billing management](https://console.anthropic.com/settings/billing) page to confirm you have available credits before using.
 
 ## Troubleshooting
 
@@ -37,10 +37,10 @@ If you encounter issues with the symlink method, you can try these alternative a
 
 ```bash
 # Alternative 1: Use the wrapper script directly
-./claude-code /path/to/your/project
+./claude_coder /path/to/your/project
 
 # Alternative 2: Use docker-compose directly
-PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-code
+PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-coder
 ```
 
 ### Access Container Shell
@@ -49,10 +49,10 @@ For deeper troubleshooting, you can get a bash shell in the container:
 
 ```bash
 # Start a bash shell in the container with your project mounted
-PROJECT_DIR=/path/to/your/project docker-compose run --rm --entrypoint bash claude-code
+PROJECT_DIR=/path/to/your/project docker-compose run --rm --entrypoint bash claude-coder
 
 # Or if you're already in your project directory
-docker-compose run --rm --entrypoint bash -e PROJECT_DIR=$(pwd) claude-code
+docker-compose run --rm --entrypoint bash -e PROJECT_DIR=$(pwd) claude-coder
 ```
 
 ## Features
@@ -81,12 +81,12 @@ Add Tavily search to Claude Code:
 
 2. Add the MCP server:
    ```bash
-   claude mcp add tavily-mcp -e TAVILY_API_KEY=tvly-xxxxx -- npx -y tavily-mcp@0.1.2
+   claude_coder mcp add tavily-mcp -e TAVILY_API_KEY=tvly-xxxxx -- npx -y tavily-mcp@0.1.2
    ```
 
 ### Adding More MCP Servers (Tools)
 
-You can extend Claude Code's capabilities by adding additional MCP servers. The [MCP Examples page](https://modelcontextprotocol.io/examples) provides a directory of available MCP tools and implementation examples, including APIs for web browsing, data visualization, image generation, and more. Each tool enhances Claude's abilities in specific domains, making it more versatile for your development workflow.
+You can extend Claude Coder's capabilities by adding additional MCP servers. The [MCP Examples page](https://modelcontextprotocol.io/examples) provides a directory of available MCP tools and implementation examples, including APIs for web browsing, data visualization, image generation, and more. Each tool enhances Claude's abilities in specific domains, making it more versatile for your development workflow.
 
 ## Technical Details
 
@@ -99,8 +99,8 @@ The Docker container:
 
 This setup maintains separate authentication configurations between:
 
-1. **Local Claude Code installation** (uses `.claude` directory and `.claude.json`)
-2. **Docker-based Claude Code** (uses `.claude-docker` directory and `.claude-docker.json`)
+1. **Local Claude Coder installation** (uses `.claude` directory and `.claude.json`)
+2. **Docker-based Claude Coder** (uses `.claude-docker` directory and `.claude-docker.json`)
 
 This isolation ensures that:
 - Your auth tokens and settings remain separate between environments
@@ -110,17 +110,17 @@ This isolation ensures that:
 
 ## Learn More
 
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
+- [Claude Coder documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
   
-  The official Claude Code documentation provides comprehensive information about this terminal-based AI assistant that understands your codebase and helps you code faster through natural language commands. Learn about its features, installation process, and how to integrate it with your development workflow.
+  The official Claude Coder documentation provides comprehensive information about this terminal-based AI assistant that understands your codebase and helps you code faster through natural language commands. Learn about its features, installation process, and how to integrate it with your development workflow.
 
-- [Claude Code tutorials](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials)
+- [Claude Coder tutorials](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials)
   
-  These practical tutorials show you how to get the most out of Claude Code for specific tasks like adding tests, updating documentation, working with images, code review, and extending Claude's capabilities with the Model Context Protocol. Follow step-by-step guides to improve your productivity.
+  These practical tutorials show you how to get the most out of Claude Coder for specific tasks like adding tests, updating documentation, working with images, code review, and extending Claude's capabilities with the Model Context Protocol. Follow step-by-step guides to improve your productivity.
 
 - [Model Context Protocol](https://modelcontextprotocol.io/introduction)
   
-  The Model Context Protocol (MCP) is an open standard that enables developers to build secure, two-way connections between data sources and AI tools. This standardizes how applications provide context to AI models, allowing Claude Code to access external tools and data sources to enhance its capabilities.
+  The Model Context Protocol (MCP) is an open standard that enables developers to build secure, two-way connections between data sources and AI tools. This standardizes how applications provide context to AI models, allowing Claude Coder to access external tools and data sources to enhance its capabilities.
 
 - [Tavily MCP documentation](https://docs.tavily.com/documentation/mcp)
   
@@ -128,7 +128,7 @@ This isolation ensures that:
 
 - [Anthropic billing management](https://console.anthropic.com/settings/billing)
   
-  Manage your Anthropic account billing, view usage across API calls and Console chats, and access receipts and invoices through the Anthropic Console. This is where you'll handle payments and monitor your Claude Code usage costs. It's important to regularly check your usage to avoid unexpected charges, as AI model costs can accumulate quickly depending on your usage patterns.
+  Manage your Anthropic account billing, view usage across API calls and Console chats, and access receipts and invoices through the Anthropic Console. This is where you'll handle payments and monitor your Claude Coder usage costs. It's important to regularly check your usage to avoid unexpected charges, as AI model costs can accumulate quickly depending on your usage patterns.
 
 ## License
 

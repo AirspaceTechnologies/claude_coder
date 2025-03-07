@@ -1,9 +1,9 @@
 # CLAUDE.md - Agent Guidelines
 
 ## Commands (Do not run these commands directly)
-- Run CLI tool: `./claude-code [project_dir]`
-- Alternative: `PROJECT_DIR=/path/to/project docker-compose run --rm claude-code`
-- Install via symlink: `ln -s $(pwd)/claude-code /usr/local/bin/claude-code`
+- Run CLI tool: `./claude_coder [project_dir]`
+- Alternative: `PROJECT_DIR=/path/to/project docker-compose run --rm claude-coder`
+- Install via symlink: `ln -s $(pwd)/claude_coder /usr/local/bin/claude_coder`
 - Debug mode: Add `--verbose` flag
 
 ## Environment
