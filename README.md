@@ -11,30 +11,48 @@ This repository provides an easy way to run Claude Code (Anthropic's AI-powered 
    docker-compose build
    ```
 
-2. **Run Claude Code**
+2. **Install Claude Code**
    ```bash
-   # Option 1: Use the wrapper script (recommended)
-   ./claude-code /path/to/your/project
-   
-   # Option 2: Use docker-compose directly
-   PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-code
+   # Create a symlink in a directory in your PATH (recommended)
+   ln -s "$(pwd)/claude-code" /usr/local/bin/claude-code
    ```
 
-3. **First-time setup**: Claude will guide you through authentication with your Anthropic account. You will need an Anthropic account with API credits to use Claude Code. Check your [billing management](https://console.anthropic.com/settings/billing) page to confirm you have available credits before using.
+3. **Run Claude Code**
+   ```bash
+   # Run from within your project directory
+   cd /path/to/your/project
+   claude-code
+   
+   # Or specify a project directory directly
+   claude-code /path/to/your/project
+   ```
 
-## Installation (Optional)
+4. **First-time setup**: Claude will guide you through authentication with your Anthropic account. You will need an Anthropic account with API credits to use Claude Code. Check your [billing management](https://console.anthropic.com/settings/billing) page to confirm you have available credits before using.
 
-Make Claude Code available from anywhere by adding it to your PATH:
+## Troubleshooting
+
+If you encounter issues with the symlink method, you can try these alternative approaches:
+
+### Alternative Run Methods
 
 ```bash
-# Create a symlink in a directory in your PATH
-ln -s "$(pwd)/claude-code" /usr/local/bin/claude-code
+# Alternative 1: Use the wrapper script directly
+./claude-code /path/to/your/project
 
-# Now you can run from any directory
-cd /path/to/your/project
-claude-code
-# Or specify a different project directory
-claude-code /path/to/different/project
+# Alternative 2: Use docker-compose directly
+PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-code
+```
+
+### Access Container Shell
+
+For deeper troubleshooting, you can get a bash shell in the container:
+
+```bash
+# Start a bash shell in the container with your project mounted
+PROJECT_DIR=/path/to/your/project docker-compose run --rm --entrypoint bash claude-code
+
+# Or if you're already in your project directory
+docker-compose run --rm --entrypoint bash -e PROJECT_DIR=$(pwd) claude-code
 ```
 
 ## Features
@@ -49,9 +67,11 @@ claude-code /path/to/different/project
 
 - Docker and Docker Compose installed on your system
 - An Anthropic account with API credits ([check your billing page](https://console.anthropic.com/settings/billing))
-- For web search: A Tavily API key (optional)
+- Optional MCP tool usages (such as Tavily API key for web search)
 
-## Web Search Capabilities
+## MCP Tools and Capabilities
+
+### Web Search with Tavily
 
 Add Tavily search to Claude Code:
 
@@ -63,6 +83,10 @@ Add Tavily search to Claude Code:
    ```bash
    claude mcp add tavily-mcp -e TAVILY_API_KEY=tvly-xxxxx -- npx -y tavily-mcp@0.1.2
    ```
+
+### Adding More MCP Servers (Tools)
+
+You can extend Claude Code's capabilities by adding additional MCP servers. The [MCP Examples page](https://modelcontextprotocol.io/examples) provides a directory of available MCP tools and implementation examples, including APIs for web browsing, data visualization, image generation, and more. Each tool enhances Claude's abilities in specific domains, making it more versatile for your development workflow.
 
 ## Technical Details
 
