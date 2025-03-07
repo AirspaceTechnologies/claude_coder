@@ -17,13 +17,19 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
    docker-compose build
    ```
 
-2. **Install Claude Coder**
+2. **Prepare claude config file for Docker volume mounts**
+   ```bash
+   # Create the claude json file locally to properly mount in Docker
+   touch ~/.claude-docker.json
+   ```
+
+3. **Install Claude Coder**
    ```bash
    # Create a symlink in a directory in your PATH (recommended)
    sudo ln -s "$(pwd)/claude_coder" /usr/local/bin/claude_coder
    ```
 
-3. **Run Claude Coder**
+4. **Run Claude Coder**
    ```bash
    # Run from within your project directory
    cd /path/to/your/project
@@ -33,7 +39,7 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
    claude_coder /path/to/your/project
    ```
 
-4. **First-time setup**: Claude will guide you through authentication with your Anthropic account. You will need an Anthropic account with API credits to use Claude Coder. Check your [billing management](https://console.anthropic.com/settings/billing) page to confirm you have available credits before using.
+5. **First-time setup**: Claude will guide you through authentication with your Anthropic account. You will need an Anthropic account with API credits to use Claude Coder. Check your [billing management](https://console.anthropic.com/settings/billing) page to confirm you have available credits before using.
 
 ## MCP Tools and Capabilities
 
