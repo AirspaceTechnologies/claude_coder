@@ -81,6 +81,29 @@ This isolation ensures that:
 - Container rebuilds won't affect your authentication state
 - Local and containerized Claude can run side-by-side without conflicts
 
+### Permission Handling
+
+This Docker implementation runs Claude Code with the `--dangerously-skip-permissions` flag enabled by default:
+
+```
+CMD ["claude", "--dangerously-skip-permissions", "--verbose"]
+```
+
+**Why This Flag is Used:**
+- Eliminates repetitive permission prompts when Claude Coder accesses files
+- Improves workflow efficiency in containerized environments
+- Security is maintained through Docker's isolation layer
+- Permissions are already explicitly granted via volume mounts
+- Provides a smoother, interruption-free experience
+
+This approach is safe in containerized environments because:
+- The Docker container already provides an isolation boundary
+- Access is limited to directories explicitly mounted as volumes
+- The user controls exactly which project directories are exposed
+- Container environments have predetermined access patterns
+
+Outside containerized environments, this flag should be used with caution as it removes Claude's permission safeguards.
+
 ## Learn More
 
 - [Claude Coder documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
