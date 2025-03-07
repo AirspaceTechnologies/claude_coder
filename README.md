@@ -72,6 +72,30 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
    - Open it in a browser on your host machine
    - Complete the authentication process
    - Copy the secret code back to the CLI prompt in the container
+   
+   **Bypass Permissions Mode Warning**:
+   
+   When running Claude Coder, you may see this warning:
+   ```
+   ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+   │                                                                                                                                                           │
+   │ WARNING: Claude Code running in Bypass Permissions mode                                                                                                   │
+   │                                                                                                                                                           │
+   │ In Bypass Permissions mode, Claude Code will not ask for your approval before running potentially dangerous commands.                                     │
+   │ This mode should only be used in a sandboxed container/VM that has restricted internet access and can easily be restored if damaged.                      │
+   │                                                                                                                                                           │
+   │ By proceeding, you accept all responsibility for actions taken while running in Bypass Permissions mode.                                                  │
+   │                                                                                                                                                           │
+   │ https://docs.anthropic.com/s/claude-code-security                                                                                                         │
+   │                                                                                                                                                           │
+   │ ❯ No, exit                                                                                                                                                │
+   │   Yes, I accept                                                                                                                                           │
+   │                                                                                                                                                           │
+   ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+      Enter to confirm · Esc to exit
+   ```
+   
+   Select "Yes, I accept" to proceed. This warning appears because the Docker container runs with the `--dangerously-skip-permissions` flag as mentioned in the [Permission Handling](#permission-handling) section.
 
 ## MCP Tools and Capabilities
 
