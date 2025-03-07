@@ -12,7 +12,7 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
 
 1. **Clone and build**
    ```bash
-   git clone https://github.com/AirspaceTechnologies/claude_coder.git
+   git clone git@github.com:AirspaceTechnologies/claude_coder.git
    cd claude_coder
    docker-compose build
    ```
