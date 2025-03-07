@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
   zip \
   unzip \
   wget \
+  sudo \
   && rm -rf /var/lib/apt/lists/*
 
 # Install modern CLI tools through apt repositories
@@ -52,14 +53,28 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
 # Create a non-root developer user
 RUN useradd -ms /bin/bash developer
 
+# Add developer to sudo group
+RUN usermod -aG sudo developer && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 # Create .ssh directory for the developer user
 RUN mkdir -p /home/developer/.ssh && \
     chmod 700 /home/developer/.ssh && \
     chown developer:developer /home/developer/.ssh
 
+# Install rbenv for Ruby version management
+RUN git clone https://github.com/rbenv/rbenv.git /home/developer/.rbenv && \
+    git clone https://github.com/rbenv/ruby-build.git /home/developer/.rbenv/plugins/ruby-build && \
+    chown -R developer:developer /home/developer/.rbenv
+
 # Switch to the developer user
 USER developer
 WORKDIR /home/developer
+
+# Configure rbenv
+ENV PATH="/home/developer/.rbenv/bin:/home/developer/.rbenv/shims:${PATH}"
+RUN echo 'eval "$(rbenv init -)"' >> /home/developer/.bashrc && \
+    /home/developer/.rbenv/bin/rbenv init -
 
 # Configure npm to install global packages in a user directory
 RUN mkdir -p /home/developer/.npm-global && \
