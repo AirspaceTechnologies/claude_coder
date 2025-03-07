@@ -1,6 +1,6 @@
 # Claude Code in Docker
 
-This repository provides an easy way to run Claude Coder (Anthropic's AI-powered CLI tool) in a Docker container. The containerized setup ensures a consistent environment with all necessary dependencies, while safely unlocking Claude's bypass permissions mode within the isolated Docker environment.
+This repository helps developers use Claude Coder (Anthropic's AI-powered CLI tool) in a Docker container for improved security and consistent development environments. You'll benefit from more efficient workflows without permission prompts, while Docker's isolation keeps your system safe. The containerized approach comes with pre-installed development tools, multiple language runtimes, and optional web search capabilities to solve coding problems using the latest information.
 
 ## Requirements
 
