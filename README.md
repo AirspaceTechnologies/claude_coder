@@ -20,7 +20,7 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
 2. **Prepare claude config file for Docker volume mounts**
    ```bash
    # Create the claude json file locally to properly mount in Docker
-   touch ~/.claude-docker.json
+   echo '{}' > ~/.claude-docker.json
    ```
 
 3. **Install Claude Coder**
