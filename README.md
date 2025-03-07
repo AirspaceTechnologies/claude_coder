@@ -1,6 +1,26 @@
-# Claude Code in Docker
+# Claude Coder
 
-This repository helps developers use Claude Coder (Anthropic's AI-powered CLI tool) in a Docker container for improved security and consistent development environments. You'll benefit from more efficient workflows without permission prompts, while Docker's isolation keeps your system safe. The containerized approach comes with pre-installed development tools, multiple language runtimes, and optional web search capabilities to solve coding problems using the latest information.
+## My Typical experience developing with an LLM
+
+**Developer:** "I'm getting this bug: `TypeNameError: name 'pc_load_letter' is not defined; Cannot read property 'pc' of undefined load_letter; NullPointerException: Attempt to invoke method on a null object;`! Can you help me out here?"
+
+**AI:** "Let's start by checking if 'foo' exists before you use it. Try this code: `<if (pc) { loadLetter(); }>` and see if that resolves the issue."
+
+**Developer:** "I tried that, but now I get 'ReferenceError: foo is not defined!'"
+
+**AI:** "Looks like a syntax hiccup. Try this code: `<if (typeof loadLetter() !== 'pc') { executeTask(); }>`—double-check your punctuation and brackets."
+
+*... After 36 more cycles of back-and-forth copy and paste ...*
+
+**Developer:** "My goodness, that finally fixed it, that was rough!"
+
+**AI:** "I am glad we could get this solved for you... What can I help you copy and paste next?"
+
+**Developer:** "Uhhgggg!"
+
+**Developer:** Thought - If we only had a system to automate all this tedious back-and-forth error-fixing...
+
+Claude Coder in Docker: Navigate to your project directory and run `claude_coder`. Your current directory is safely mounted in a Docker container with Claude Coder ready to help you code faster.
 
 ## Requirements
 
@@ -131,22 +151,6 @@ Without web search, Claude relies solely on its training data, which may not inc
 You can extend Claude Coder's capabilities by adding additional MCP servers. The [MCP Examples page](https://modelcontextprotocol.io/examples) provides a directory of available MCP tools and implementation examples, including APIs for web browsing, data visualization, image generation, and more. Each tool enhances Claude's abilities in specific domains, making it more versatile for your development workflow.
 
 ## Technical Details
-
-### Features
-- Complete containerized environment with Docker
-- Pre-installed development tools:
-  - Version control: git, git-lfs, GitHub CLI
-  - Editors: vim
-  - Modern CLI tools: ripgrep, fd-find, bat, jq, make
-  - Utilities: curl, wget, zip/unzip
-- Multiple language runtimes (Node.js 18, Python 3, Ruby, Go)
-- Non-root user setup with proper permissions
-- Persistent configuration storage
-
-### Container Configuration
-- Uses Ubuntu 22.04 as the base image
-- Mounts your local `.claude-docker` directory and `.claude-docker.json` file for persistence
-- Mounts your project directory specified by `PROJECT_DIR`
 
 ### Authentication Isolation
 
