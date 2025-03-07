@@ -20,7 +20,7 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
 2. **Install Claude Coder**
    ```bash
    # Create a symlink in a directory in your PATH (recommended)
-   ln -s "$(pwd)/claude_coder" /usr/local/bin/claude_coder
+   sudo ln -s "$(pwd)/claude_coder" /usr/local/bin/claude_coder
    ```
 
 3. **Run Claude Coder**
