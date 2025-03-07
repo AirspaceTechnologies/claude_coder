@@ -179,6 +179,9 @@ PROJECT_DIR=/path/to/your/project docker-compose run --rm --entrypoint bash clau
 
 # Or if you're already in your project directory
 docker-compose run --rm --entrypoint bash -e PROJECT_DIR=$(pwd) claude-coder
+
+# Quick shell access without mounting any project
+docker-compose run --rm claude-coder bash
 ```
 
 ## License
