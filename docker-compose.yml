@@ -8,7 +8,9 @@ services:
     volumes:
       - $HOME/.claude-docker:/home/developer/.claude
       - $HOME/.claude-docker.json:/home/developer/.claude.json
-      - ${PROJECT_DIR:?PROJECT_DIR must be set}:/home/developer/projects/code
+      - ${PROJECT_DIR:-/tmp/empty}:/home/developer/projects/code
+    environment:
+      - PROJECT_DIR
     stdin_open: true
     tty: true
     working_dir: /home/developer/projects/code

@@ -47,6 +47,9 @@ RUN npm install -g @anthropic-ai/claude-code
 # Create a persistent configuration directory for Claude Code (e.g. for authentication data)
 RUN mkdir -p /home/developer/.claude
 
+# Create empty directory for default project directory fallback
+RUN mkdir -p /tmp/empty
+
 # Volumes for Claude Code config and SSH credentials
 VOLUME ["/home/developer/.claude", "/home/developer/.ssh"]
 

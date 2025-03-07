@@ -2,6 +2,12 @@
 
 This repository provides an easy way to run Claude Coder (Anthropic's AI-powered CLI tool) in a Docker container. The containerized setup ensures a consistent environment with all necessary dependencies.
 
+## Requirements
+
+- Docker and Docker Compose installed on your system
+- An Anthropic account with API credits ([check your billing page](https://console.anthropic.com/settings/billing))
+- Optional MCP tool usages (such as Tavily API key for web search)
+
 ## Quick Start
 
 1. **Clone and build**
@@ -29,46 +35,6 @@ This repository provides an easy way to run Claude Coder (Anthropic's AI-powered
 
 4. **First-time setup**: Claude will guide you through authentication with your Anthropic account. You will need an Anthropic account with API credits to use Claude Coder. Check your [billing management](https://console.anthropic.com/settings/billing) page to confirm you have available credits before using.
 
-## Troubleshooting
-
-If you encounter issues with the symlink method, you can try these alternative approaches:
-
-### Alternative Run Methods
-
-```bash
-# Alternative 1: Use the wrapper script directly
-./claude_coder /path/to/your/project
-
-# Alternative 2: Use docker-compose directly
-PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-coder
-```
-
-### Access Container Shell
-
-For deeper troubleshooting, you can get a bash shell in the container:
-
-```bash
-# Start a bash shell in the container with your project mounted
-PROJECT_DIR=/path/to/your/project docker-compose run --rm --entrypoint bash claude-coder
-
-# Or if you're already in your project directory
-docker-compose run --rm --entrypoint bash -e PROJECT_DIR=$(pwd) claude-coder
-```
-
-## Features
-
-- Complete containerized environment with Docker
-- Pre-installed development tools (git, vim, etc.) 
-- Multiple language runtimes (Node.js 18, Python 3, Ruby, Go)
-- Non-root user setup with proper permissions
-- Persistent configuration storage
-
-## Requirements
-
-- Docker and Docker Compose installed on your system
-- An Anthropic account with API credits ([check your billing page](https://console.anthropic.com/settings/billing))
-- Optional MCP tool usages (such as Tavily API key for web search)
-
 ## MCP Tools and Capabilities
 
 ### Web Search with Tavily
@@ -90,7 +56,14 @@ You can extend Claude Coder's capabilities by adding additional MCP servers. The
 
 ## Technical Details
 
-The Docker container:
+### Features
+- Complete containerized environment with Docker
+- Pre-installed development tools (git, vim, etc.) 
+- Multiple language runtimes (Node.js 18, Python 3, Ruby, Go)
+- Non-root user setup with proper permissions
+- Persistent configuration storage
+
+### Container Configuration
 - Uses Ubuntu 22.04 as the base image
 - Mounts your local `.claude-docker` directory and `.claude-docker.json` file for persistence
 - Mounts your project directory specified by `PROJECT_DIR`
@@ -129,6 +102,32 @@ This isolation ensures that:
 - [Anthropic billing management](https://console.anthropic.com/settings/billing)
   
   Manage your Anthropic account billing, view usage across API calls and Console chats, and access receipts and invoices through the Anthropic Console. This is where you'll handle payments and monitor your Claude Coder usage costs. It's important to regularly check your usage to avoid unexpected charges, as AI model costs can accumulate quickly depending on your usage patterns.
+
+## Troubleshooting
+
+If you encounter issues with the symlink method, you can try these alternative approaches:
+
+### Alternative Run Methods
+
+```bash
+# Alternative 1: Use the wrapper script directly
+./claude_coder /path/to/your/project
+
+# Alternative 2: Use docker-compose directly
+PROJECT_DIR=/path/to/your/project docker-compose run --rm claude-coder
+```
+
+### Access Container Shell
+
+For deeper troubleshooting, you can get a bash shell in the container:
+
+```bash
+# Start a bash shell in the container with your project mounted
+PROJECT_DIR=/path/to/your/project docker-compose run --rm --entrypoint bash claude-coder
+
+# Or if you're already in your project directory
+docker-compose run --rm --entrypoint bash -e PROJECT_DIR=$(pwd) claude-coder
+```
 
 ## License
 
