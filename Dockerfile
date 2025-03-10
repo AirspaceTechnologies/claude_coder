@@ -24,10 +24,6 @@ RUN apt-get update && apt-get install -y \
   unzip \
   wget \
   sudo \
-  && rm -rf /var/lib/apt/lists/*
-
-# Install modern CLI tools through apt repositories
-RUN apt-get update && apt-get install -y \
   ripgrep \
   fd-find \
   bat \
@@ -79,19 +75,33 @@ RUN echo 'eval "$(rbenv init -)"' >> /home/developer/.bashrc && \
 # Configure npm to install global packages in a user directory
 RUN mkdir -p /home/developer/.npm-global && \
     npm config set prefix '/home/developer/.npm-global'
-ENV PATH="/home/developer/.npm-global/bin:${PATH}"
+ENV PATH="/home/developer/.npm-global/bin:/root/.local/bin:/usr/local/bin:${PATH}"
 
 # Install Claude Code globally via npm
-RUN npm install -g @anthropic-ai/claude-code
+# RUN npm install -g @anthropic-ai/claude-code
+COPY anthropic-ai-claude-code-patched-0.2.35.tgz anthropic-ai-claude-code-patched-0.2.35.tgz
+RUN npm install -g ./anthropic-ai-claude-code-patched-0.2.35.tgz
 
 # Create a persistent configuration directory for Claude Code (e.g. for authentication data)
 RUN mkdir -p /home/developer/.claude
 
+USER developer
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/developer/.bashrc && \
+    chmod +x $HOME/.local/bin/uv* && \
+    export PATH="$HOME/.local/bin:$PATH"
+USER root
+ENV PATH="/home/developer/.local/bin:${PATH}"
+
 # Create empty directory for default project directory fallback
 RUN mkdir -p /tmp/empty
+
+USER developer
 
 # Volumes for Claude Code config and SSH credentials
 VOLUME ["/home/developer/.claude", "/home/developer/.ssh"]
 
 # Default command: launch Claude Code interactively
-CMD ["claude", "--dangerously-skip-permissions", "--verbose"]
+# Use a shell to ensure PATH is properly set
+# CMD ["claude-patched", "--dangerously-skip-permissions", "--verbose"]
+CMD ["claude-patched", "--dangerously-skip-permissions", "--verbose"]
