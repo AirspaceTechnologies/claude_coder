@@ -11,7 +11,7 @@ Add Tavily search to Claude Code:
 2. Add the MCP server:
    ```bash
    cd /path/to/claude_coder
-   docker-compose run --rm claude-coder claude mcp add tavily-mcp -e TAVILY_API_KEY=tvly-xxxxx -- npx -y tavily-mcp@0.1.2
+   docker-compose run --rm claude-coder claude-patched mcp add tavily-mcp -e TAVILY_API_KEY=tvly-xxxxx -- npx -y tavily-mcp@0.1.2
    ```
 
 ## Why Web Search is Essential During Development
